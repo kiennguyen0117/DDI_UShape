@@ -1,0 +1,56 @@
+**=================================================================
+*****************************************************************************
+*INCLUDE, INPUT=FEM_BRACKET_with_Bolt_Block_0301.inp
+*INCLUDE, INPUT=MAT_BOSCH_EAT_FEM_ABQ_V6.14-4_2017_03_17.inp, password=N0rdt0rPla2a
+**=================================================================
+**=========================================================================**
+*BOUNDARY
+BC			  , 	1, 6
+**
+**=================================================================
+**
+** STEP: Step-1
+** 
+*STEP, NAME=STEP-1, UNSYMM=YES, INC=1000, NLGEOM=YES, AMPLITUDE=RAMP
+BOLT PRELOAD
+**
+*STATIC
+0.01, 1., 1e-012, 1.
+*CLOAD, OP=NEW
+1000001, 1, 20000.00
+1000002, 1, 20000.00
+**
+******************
+** OUTPUT REQUESTS
+** 
+*RESTART, WRITE, FREQUENCY=500
+** 
+** FIELD OUTPUT: F-OUTPUT-1
+** 
+*Output, field, frequency=2
+*NODE OUTPUT
+CF, RF, U
+*ELEMENT OUTPUT, DIRECTIONS=YES
+LE, NFORC, PE, PEEQ, PEMAG, S
+*CONTACT OUTPUT
+CDISP, CFORCE, CSTRESS
+** 
+**---------------------FIL OUTPUT------------------------------**
+*EL FILE, ELSET=EALL, POSITION=NODES, DIRECTIONS=YES, FREQUENCY=100
+S,SINV,PE
+**
+*NODE FILE, NSET=NALL, FREQUENCY=100
+U,NT
+**---------------------FIL OUTPUT------------------------------**
+**
+** HISTORY OUTPUT: H-OUTPUT-1
+** 
+*OUTPUT, HISTORY, frequency=2
+*ENERGY OUTPUT
+ALLAE, ALLCD, ALLDMD, ALLEE, ALLFD, ALLIE, ALLJD, ALLKE, ALLKL, ALLPD, ALLQB, ALLSD, ALLSE, ALLVD, ALLWK, ETOTAL
+*CONTACT OUTPUT
+CFN1, CFN2, CFN3, CFNM, CFS1, CFS2, CFS3, CFSM, CFT1, CFT2, CFT3, CFTM, CMN1, CMN2, CMN3, CMNM
+CMS1, CMS2, CMS3, CMSM, CMT1, CMT2, CMT3, CMTM
+**
+*END STEP
+**=========================================================================**
