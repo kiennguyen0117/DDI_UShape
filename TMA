@@ -1,0 +1,126 @@
+**=========================================================================**
+**
+** STEP: TMA
+**
+*RESTART, READ
+**
+**=========================================================================**
+**
+** STEP: STEP-3
+**
+*STEP, NAME=1-HEISS, UNSYMM=YES, INC=500, NLGEOM=YES, AMPLITUDE=RAMP
+1. AUFHEIZEN
+**
+*Static, stabilize, factor=0.0002, allsdtol=0.05, continue=NO 
+0.15,1.0,1e-9,0.15
+**
+**Contact controls, stabilize=0.00001
+*TEMPERATURE,FILE=ANALYSIS_DFCV_CN6_TVA_22Dec.fil
+**
+*RESTART, WRITE, FREQUENCY=500
+**
+**
+*OUTPUT, FIELD, FREQUENCY=2
+*NODE OUTPUT
+CF, RF, U, NT
+*ELEMENT OUTPUT
+LE, NFORC, PE, PEEQ, PEMAG, S
+*CONTACT OUTPUT
+CDISP, CFORCE, CSTRESS
+**
+**-------------------------------FIL OUTPUT--------------------------------**
+**
+** HISTORY OUTPUT: H-OUTPUT-1
+** 
+*OUTPUT, HISTORY
+*ENERGY OUTPUT
+ALLAE, ALLCD, ALLDMD, ALLEE, ALLFD, ALLIE, ALLJD, ALLKE, ALLKL, ALLPD, ALLQB, ALLSD, ALLSE, ALLVD, ALLWK, ETOTAL
+*CONTACT OUTPUT
+CFN1, CFN2, CFN3, CFNM, CFS1, CFS2, CFS3, CFSM, CFT1, CFT2, CFT3, CFTM, CMN1, CMN2, CMN3, CMNM
+CMS1, CMS2, CMS3, CMSM, CMT1, CMT2, CMT3, CMTM
+**
+**-------------------------------FIL OUTPUT--------------------------------**
+**
+*END STEP
+**
+**=========================================================================**
+** STEP: STEP-4
+**
+*STEP, NAME=1-KALT, UNSYMM=YES, INC=500, NLGEOM=YES, AMPLITUDE=RAMP
+1. ABKUEHLEN
+**
+*Static, stabilize, factor=0.0005, allsdtol=0.05, continue=NO 
+0.15,1.0,1e-9,0.15
+**
+**Contact controls, stabilize=0.00001
+*TEMPERATURE
+NALL, 20., 20., 20., 20., 20.,
+**
+**Contact Controls, master=M_23_BRACKET_COVER, slave=S_23_BRACKET_COVER, stabilize=0.0002
+**Contact Controls, master=M_06_LOCK_SPAN_BAND, slave=S_06_LOCK_SPAN_BAND, stabilize=0.00005
+**Contact Controls, master=S_02_OUTER-COVER_SPANBAND, slave=M_02_SPAN_COVER, stabilize=0.00005
+**Contact Controls, master=S_01_SPAN_COVER, slave=M_01_SPAN_COVER, stabilize=0.00004
+**Contact Controls, master=M_09_LOCK_SPAN, slave=S_09_LOCK_SPAN, stabilize=0.00004
+**Contact Controls, master=M_11_BOLT_LOCK, slave=S_11_BOLT_LOCK, stabilize=0.00015
+**Contact Controls, master=M_12_BOLT_LOCK, slave=S_12_BOLT_LOCK, stabilize=0.00007
+**
+*OUTPUT, FIELD, FREQUENCY=2
+*NODE OUTPUT
+CF, RF, U, NT
+*ELEMENT OUTPUT
+LE, NFORC, PE, PEEQ, PEMAG, S
+*CONTACT OUTPUT
+CDISP, CFORCE, CSTRESS
+**
+**-------------------------------FIL OUTPUT--------------------------------**
+**
+** HISTORY OUTPUT: H-OUTPUT-1
+** 
+*OUTPUT, HISTORY
+*ENERGY OUTPUT
+ALLAE, ALLCD, ALLDMD, ALLEE, ALLFD, ALLIE, ALLJD, ALLKE, ALLKL, ALLPD, ALLQB, ALLSD, ALLSE, ALLVD, ALLWK, ETOTAL
+*CONTACT OUTPUT
+CFN1, CFN2, CFN3, CFNM, CFS1, CFS2, CFS3, CFSM, CFT1, CFT2, CFT3, CFTM, CMN1, CMN2, CMN3, CMNM
+CMS1, CMS2, CMS3, CMSM, CMT1, CMT2, CMT3, CMTM
+**
+**-------------------------------FIL OUTPUT--------------------------------**
+**
+*END STEP
+**
+**=========================================================================**
+**
+** STEP: STEP-5
+**
+*STEP, NAME=2-HEISS, UNSYMM=YES, INC=500, NLGEOM=YES, AMPLITUDE=RAMP
+2. AUFHEIZEN
+**
+*Static, stabilize, factor=0.0002, allsdtol=0.05, continue=NO 
+0.15,1.0,1e-9,0.15
+**
+**Contact controls, stabilize=0.00001
+*TEMPERATURE,FILE=ANALYSIS_DFCV_CN6_TVA_22Dec.fil
+**
+*OUTPUT, FIELD, FREQUENCY=2
+*NODE OUTPUT
+CF, RF, U, NT
+*ELEMENT OUTPUT
+LE, NFORC, PE, PEEQ, PEMAG, S
+*CONTACT OUTPUT
+CDISP, CFORCE, CSTRESS
+**
+**-------------------------------FIL OUTPUT--------------------------------**
+**
+** HISTORY OUTPUT: H-OUTPUT-1
+** 
+*OUTPUT, HISTORY
+*ENERGY OUTPUT
+ALLAE, ALLCD, ALLDMD, ALLEE, ALLFD, ALLIE, ALLJD, ALLKE, ALLKL, ALLPD, ALLQB, ALLSD, ALLSE, ALLVD, ALLWK, ETOTAL
+*CONTACT OUTPUT
+CFN1, CFN2, CFN3, CFNM, CFS1, CFS2, CFS3, CFSM, CFT1, CFT2, CFT3, CFTM, CMN1, CMN2, CMN3, CMNM
+CMS1, CMS2, CMS3, CMSM, CMT1, CMT2, CMT3, CMTM
+**
+**-------------------------------FIL OUTPUT--------------------------------**
+**
+*END STEP
+**
+**=========================================================================**
